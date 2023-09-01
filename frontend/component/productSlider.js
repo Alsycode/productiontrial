@@ -38,8 +38,8 @@ function BlogSlider() {
     };
 
     const fetchNewsData = async () => {
-        const apiUrl = 'https://testgoood.onrender.com/api/blogs?populate=*';
-        const bearerToken = 'd89f936b096cfa24d62d35c1392d9b79aeacef58beb41b93b02c1900822a140bc92f3bb85fb8267a7e6ffb37f1e1eef56164461dd1d3c5e96e21012c0f153fc67a53e61e12049239a15b6fa5bbdfbcf225623a9ada50aa42d9e1b6e1c7c60baaf8f0a2f42a830c6e95dbb23bd4d8ec89f14f3ba427e3e82f1254237904e6d46d'; // Replace with your actual access token
+        const apiUrl = "http://localhost:1337/api/products?populate=*";
+        const bearerToken = "Bearer 92626c31f4d061643edfefba3644eb53d25efb908d6bee8a7b550c02000927ae12ab289469ca3bfbeb799606115ebc3556e202071767cde15c03b14a835f7ff729f2ddc897bba3bf4cc8825079144e1f5e8980fc0f3a20e8f481508e832353cd8ecf87a111fdb19b94767074bc111ca44e794492dc72af30525c39aa3614497b"; // Replace with your actual access token
 
         try {
             const response = await fetch(apiUrl, {
