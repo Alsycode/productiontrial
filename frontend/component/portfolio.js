@@ -4,7 +4,7 @@ import SimpleReactLightbox from 'simple-react-lightbox';
 import {SRLWrapper, useLightbox} from 'simple-react-lightbox'; 
 
 function Portfolio() {
-  const apiUrl = "http://localhost:1337/api/projects?populate=*";
+  const apiUrl = `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/projects?populate=*`;
   const [filter, setFilter] = useState("all");
   const { openLightbox } = useLightbox();
   const [projects, setProjects] = useState([]);

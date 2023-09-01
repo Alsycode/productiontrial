@@ -6,7 +6,7 @@ function ClientSlider() {
   const [data, setData] = useState([]); // State to store the fetched data
 
   useEffect(() => {
-    const apiUrl = 'http://localhost:1337/api/clients?populate=*'; // Replace with your API URL
+    const apiUrl = `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/clients?populate=*`; // Replace with your API URL
 
     const fetchClients = async () => {
       try {

@@ -7,7 +7,7 @@ function TestimonialSlider() {
   const [testimonials, setTestimonials] = useState(null); // State to store fetched testimonials
   const [error, setError] = useState(null); // State to handle fetch errors
 
-  const apiUrl = 'http://localhost:1337/api/testimonies?populate=*'; // API endpoint for testimonials
+  const apiUrl = `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/testimonies?populate=*`; // API endpoint for testimonials
   const bearerToken = "92626c31f4d061643edfefba3644eb53d25efb908d6bee8a7b550c02000927ae12ab289469ca3bfbeb799606115ebc3556e202071767cde15c03b14a835f7ff729f2ddc897bba3bf4cc8825079144e1f5e8980fc0f3a20e8f481508e832353cd8ecf87a111fdb19b94767074bc111ca44e794492dc72af30525c39aa3614497b" // Replace with your actual Bearer token
 
   // Configuration settings for the react-slick Slider component
