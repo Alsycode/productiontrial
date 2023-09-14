@@ -39,7 +39,7 @@ function BlogSlider() {
 
     const fetchNewsData = async () => {
         const apiUrl = "https://aecstrapi-askn4.ondigitalocean.app/api/latestnewsblogs?populate=*";
-        const bearerToken = "Bearer a5691f57665abf4e07c4457bd26e6bb24c6e3140590f2c1c031ed679c737160cbbacb2bfdf8e6f03551064264cda866016280d0e1b173e98f4dde4fe10e220cd6044428f7dc23086a1f81055542443fe3dec252552354a99fbcf0b1232217bff988bb9e4eb58f9bd74b0960e649f65bb36de8ebc6b2c56c21d017bf25da6b590"; // Replace with your actual access token
+        const bearerToken = "Bearer a5691f57665abf4e07c4457bd26xe6bb24c6e3140590f2c1c031ed679c737160cbbacb2bfdf8e6f03551064264cda866016280d0e1b173e98f4dde4fe10e220cd6044428f7dc23086a1f81055542443fe3dec252552354a99fbcf0b1232217bff988bb9e4eb58f9bd74b0960e649f65bb36de8ebc6b2c56c21d017bf25da6b590"; // Replace with your actual access token
 
         try {
             const response = await fetch(apiUrl, {

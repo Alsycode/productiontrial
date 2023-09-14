@@ -6,11 +6,11 @@ function ClientSlider() {
   const [data, setData] = useState([]); // State to store the fetched data
 
   useEffect(() => {
-    const apiUrl = `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/clients?populate=*`; // Replace with your API URL
+    const apiUrl = "https://aecstrapi-askn4.ondigitalocean.app/api/latestnewsblogs?populate=*"; // Replace with your API URL
 
     const fetchClients = async () => {
       try {
-        const bearerToken = '92626c31f4d061643edfefba3644eb53d25efb908d6bee8a7b550c02000927ae12ab289469ca3bfbeb799606115ebc3556e202071767cde15c03b14a835f7ff729f2ddc897bba3bf4cc8825079144e1f5e8980fc0f3a20e8f481508e832353cd8ecf87a111fdb19b94767074bc111ca44e794492dc72af30525c39aa3614497b'; // Replace with your actual Bearer token
+        const bearerToken = 'a5691f57665abf4e07c4457bd26xe6bb24c6e3140590f2c1c031ed679c737160cbbacb2bfdf8e6f03551064264cda866016280d0e1b173e98f4dde4fe10e220cd6044428f7dc23086a1f81055542443fe3dec252552354a99fbcf0b1232217bff988bb9e4eb58f9bd74b0960e649f65bb36de8ebc6b2c56c21d017bf25da6b590'; // Replace with your actual Bearer token
 
         const res = await fetch(apiUrl, {
           headers: {
