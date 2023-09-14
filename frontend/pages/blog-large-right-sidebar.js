@@ -13,11 +13,11 @@ function BlogLargeRightSidebar() {
   const fetchBlogContents = async () => {
     try {
       const res = await fetch(
-        "https://testgoood.onrender.com/api/blogcontents?populate=*",
+        "https://aecstrapi-askn4.ondigitalocean.app/api/blogcontents?populate=*",
         {
           headers: {
             Authorization:
-              "Bearer d89f936b096cfa24d62d35c1392d9b79aeacef58beb41b93b02c1900822a140bc92f3bb85fb8267a7e6ffb37f1e1eef56164461dd1d3c5e96e21012c0f153fc67a53e61e12049239a15b6fa5bbdfbcf225623a9ada50aa42d9e1b6e1c7c60baaf8f0a2f42a830c6e95dbb23bd4d8ec89f14f3ba427e3e82f1254237904e6d46d",
+              "Bearer 1cc0a576b38722e585230c62dc90b0476114ad0a15b46ab32402682387a85a661eaa649219d2b959481317fc5cb253a6021487927a8c43f6018f1d1ee7e126540c8a9da5cc064e5e77d2cb43ec767894c2319957a651cdf7d84f914d4588c5cd83142301d22bc2c3cfcb8a7a248a6328307ceabd5ef6532153d892e16be6a5e5",
           },
         }
       );
