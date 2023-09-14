@@ -6,7 +6,7 @@ function ClientSlider() {
   const [data, setData] = useState([]); // State to store the fetched data
 
   useEffect(() => {
-    const apiUrl = "https://aecstrapi-askn4.ondigitalocean.app/api/latestnewsblogs?populate=*"; // Replace with your API URL
+    const apiUrl = "https://aecstrapi-askn4.ondigitalocean.app/api/clients?populate=*"; // Replace with your API URL
 
     const fetchClients = async () => {
       try {
