@@ -1,0 +1,280 @@
+import React, { useState } from "react";
+import Header from "../../layout/header";
+import Footer from "../../layout/footer";
+import { useRouter } from "next/router";
+import Image from "next/image";
+import Link from "next/link";
+function ProductDetails({ productData, otherData }) {
+     const largeImageUrl =
+     productData.data[0].attributes.productimage.data.attributes.formats.thumbnail.url;
+ 
+ const [currentPage, setCurrentPage] = useState(1);
+   const itemsPerPage = 3;
+   const [searchQuery, setSearchQuery] = useState("");
+   const [currentSlug, setCurrentSlug] = useState(""); 
+   const [selectedTag, setSelectedTag] = useState(null); 
+ const router = useRouter();
+const slug = router.query.product;
+
+const handleTagClick = (tagText) => {
+  const matchingItem = otherData.data.find((item) =>
+ item.attributes.slug.includes(tagText)
+);
+
+if (matchingItem) {
+
+ router.push(`/productdetails/${matchingItem.attributes.slug}`);
+}
+};
+  
+   const handleSearchSubmit = (e) => {
+     e.preventDefault();
+   
+   };
+   const handleSearchChange = (e) => {
+     const searchValue = e.target.value;
+     setSearchQuery(searchValue);
+     setCurrentPage(1);
+   };
+
+ 
+   const handleItemClick = (newSlug) => {
+     setCurrentSlug(newSlug); 
+     window.location.href = `/productdetails/${newSlug}`; 
+   };
+
+   
+   
+   const filteredProducts = otherData.data.filter((blog) => {
+     const fieldToSearch = blog.attributes.productname?.toLowerCase() || "";
+     const searchTerm = searchQuery.toLowerCase();
+     return fieldToSearch.includes(searchTerm);
+   });
+
+   
+   
+   const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
+
+   const currentBlogs = filteredProducts.slice(
+     (currentPage - 1) * itemsPerPage,
+     currentPage * itemsPerPage
+   );
+
+
+   const product = productData.data[0].attributes.productname;
+
+  return (
+    <>
+      <Header />
+       <div className="page-content bg-white">
+        <div className="container">
+          <div
+            className="dlab-bnr-inr overlay-primary-dark"
+            style={{ backgroundImage: "url(images/banner/bnr1.jpg)" }}
+          >
+            <div className="container">
+              <div className="dlab-bnr-inr-entry">
+                <h1>Product Details</h1>
+                <nav aria-label="breadcrumb" className="breadcrumb-row">
+               
+                </nav>
+              </div>
+            </div>
+          </div>
+          <div className="row" style={{ paddingTop: "30px" }}>
+            <div className="col-xl-8 col-lg-8 m-b50">
+              <div className="dlab-blog blog-single style-1">
+                <div className="dlab-media rounded-md shadow">
+                  <Image width={700} height={270} src={largeImageUrl} alt="ALLT" />
+                </div>
+                <h2>{product}</h2>
+                <h2>{productData.data[0].attributes.date}</h2>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec
+                  odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis.
+                  Suspendisse urna nibh viverra non semper suscipit posuere a pede.
+                </p>
+              </div>
+            </div>
+
+            
+            <div className="col-xl-4 col-lg-4 m-b50">
+               {/* <div className="widget widget_search">
+                <h2 className="widget-title">Search</h2>
+                <form className="dlab-form" onSubmit={handleSearchSubmit}>
+                  <div className="input-group">
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Search products..."
+                      name="search"
+                      value={searchQuery}
+                      onChange={handleSearchChange}
+                    />
+                    <span className="input-group-btn">
+                      <button className="btn btn-primary" type="submit">
+                        <i className="ti-search"></i>
+                      </button>
+                    </span>
+                  </div>
+                </form>
+              </div>  */}
+              <div style={{ background: 'white' }}>
+  <div>
+  <h2 className="widget-title">Related tags</h2>
+    <button
+      className={`border-none block text-left ${
+        selectedTag === "camera" ? "bg-primary text-white selected-tag" : ""
+      }`}
+       onClick={() => handleTagClick("camera")}
+      style={{
+        marginBottom: '10px',
+        background: 'white',
+        border: 'none',
+      }}
+    >
+      <h6 className="title">#camera</h6>
+    </button>
+  </div>
+  <div>
+    <button
+      className={`border-none block text-left ${
+        selectedTag === "tv" ? "bg-primary text-white selected-tag" : ""
+      }`}
+       onClick={() => handleTagClick("tv")}
+      style={{
+        marginBottom: '10px',
+        background: 'white',
+        border: 'none',
+      }}
+    >
+      <h6 className="title">#tv</h6>
+    </button>
+  </div>
+  <div>
+  <button
+      className={`border-none block text-left ${
+        selectedTag === "laptop" ? "bg-primary text-white selected-tag" : ""
+      }`}
+       onClick={() => handleTagClick("laptop")}
+      style={{
+        marginBottom: '10px',
+        background: 'white',
+        border: 'none',
+      }}
+    >
+      <h6 className="title">#laptop</h6>
+    </button>
+  </div>
+
+  <div>
+  <button
+      className={`border-none block text-left ${
+        selectedTag === "laptop" ? "bg-primary text-white selected-tag" : ""
+      }`}
+       onClick={() => handleTagClick("headphones")}
+      style={{
+        marginBottom: '10px',
+        background: 'white',
+        border: 'none',
+      }}
+    >
+      <h6 className="title">#headphones</h6>
+    </button>
+  </div>
+</div>
+
+
+              <div className="widget recent-posts-entry">
+                <h2 className="widget-title">Recent products</h2>
+                <div className="widget-post-bx">
+                  {otherData.data
+                    .reverse()
+                    .slice(0, 4)
+                    .map((product) => (
+                      <div className="widget-post clearfix" key={product.id}>
+                        <div className="dlab-media">
+                          <Image
+                            width={400}
+                            height={270}
+                            src={
+                              product.attributes.productimage.data.attributes.formats
+                                .thumbnail.url
+                            }
+                            alt="blog.attributes.heading"
+                          />
+                        </div>
+                        <div className="dlab-info">
+                        <Link href={`./${product.attributes.slug}`}>
+                    <a>{product.attributes.productname}</a>
+                  </Link>
+                            
+                          
+                        </div>
+                      </div>
+                    ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> 
+      <Footer />
+    </>
+  );
+}
+
+export default ProductDetails;
+
+export async function getServerSideProps(context) {
+  const { params } = context;
+  const slugg = params.product || ""; 
+
+  const apiUrl1 = `https://aecstrapi-askn4.ondigitalocean.app/api/products?populate=*&filters[slug][$eq]=${slugg}`;
+  const apiUrl2 = `https://aecstrapi-askn4.ondigitalocean.app/api/products?populate=*`;
+  const bearerToken =
+    "1cc0a576b38722e585230c62dc90b0476114ad0a15b46ab32402682387a85a661eaa649219d2b959481317fc5cb253a6021487927a8c43f6018f1d1ee7e126540c8a9da5cc064e5e77d2cb43ec767894c2319957a651cdf7d84f914d4588c5cd83142301d22bc2c3cfcb8a7a248a6328307ceabd5ef6532153d892e16be6a5e5"; // Replace with your actual bearer token
+
+  try {
+ 
+    const response1 = await fetch(apiUrl1, {
+      headers: {
+        Authorization: `Bearer ${bearerToken}`,
+      },
+    });
+
+    if (!response1.ok) {
+      throw new Error(`API request 1 failed with status ${response1.status}`);
+    }
+
+   
+    const data1 = await response1.json();
+
+   
+    const response2 = await fetch(apiUrl2, {
+      headers: {
+        Authorization: `Bearer ${bearerToken}`,
+      },
+    });
+
+    if (!response2.ok) {
+      throw new Error(`API request 2 failed with status ${response2.status}`);
+    }
+
+  
+    const data2 = await response2.json();
+
+  
+    return {
+      props: {
+        productData: data1,
+        otherData: data2,
+      },
+    };
+  } catch (error) {
+   
+    return {
+      props: { error: error.message },
+    };
+  }
+}

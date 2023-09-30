@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Quote from "../element/quote";
 import Footer from "../layout/footer";
-import Header from "../layout/header-3";
+import Header from "../layout/header";
 
 
 function ContactUs1() {

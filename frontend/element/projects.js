@@ -1,6 +1,7 @@
 import Portfolio from "../component/portfolio";
 
-function Projects() {
+function Projects({projectsData}) {
+    console.log("projects", projectsData)
     return (
         <>
             <section className="content-inner">
@@ -14,7 +15,7 @@ function Projects() {
                         </h2>
                     </div>
 
-                    <Portfolio />
+                    <Portfolio  projectsData={projectsData}/>
                 </div>
             </section>
         </>

@@ -1,0 +1,1 @@
+{"c":["pages/team-1","webpack"],"r":["pages/teamdetail/[team]"],"m":["./layout/header.js","./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Fteamdetail%2F%5Bteam%5D&absolutePagePath=C%3A%5CUsers%5CLenovo%5CDownloads%5Cteme1latest%5Cfrontend%5Cpages%5Cteamdetail%5C%5Bteam%5D.js!","./pages/teamdetail/[team].js"]}

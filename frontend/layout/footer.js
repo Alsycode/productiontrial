@@ -1,6 +1,19 @@
 import Link from 'next/link';
 
 function Footer() {
+	const officelocation = "210, Annex - 2, INFOPARK TBC JLN Stadium Complex, Kaloor, Kochi, Kerala 682017";
+	const officeLocation = "123 Main Street, City, Country";
+
+  // Create a function to generate the Google Maps URL
+  const generateGoogleMapsUrl = (location) => {
+    // Encode the location for the URL
+    const encodedLocation = encodeURIComponent(location);
+
+    // Construct the Google Maps URL with the encoded location
+    return `https://www.google.com/maps?q=${encodedLocation}`;
+  };
+
+
   return (
     <>
       {/* <!-- Footer --> */}
@@ -37,9 +50,13 @@ function Footer() {
 										</a>
 									</Link>	
 								</div>
-								<div className="icon-content">
-									<p>Marmora Road Chi Minh City, Vietnam</p>
-								</div>
+								<div>
+  Find us at:{" "}
+   <a href={generateGoogleMapsUrl(officeLocation)} target="_blank" rel="noopener noreferrer">
+   <p style={{ display: 'block' }}>{officelocation}</p>
+  </a>
+ 
+</div>
 							</div>
 						</div>
 					</div>
@@ -62,11 +79,11 @@ function Footer() {
 						<div className="widget widget_services">
 							<h5 className="footer-title">Our links</h5>
 							<ul>
-								<li><Link href="#"><a>Home</a></Link></li>
-								<li><Link href="#"><a>About Us</a></Link></li>
-								<li><Link href="#"><a>Services</a></Link></li>
-								<li><Link href="#"><a>Team</a></Link></li>
-								<li><Link href="#"><a>Blog</a></Link></li>
+								<li><Link href="\"><a>Home</a></Link></li>
+								<li><Link href="\about-us-1"><a>About Us</a></Link></li>
+								<li><Link href="\services-1"><a>Services</a></Link></li>
+								<li><Link href="\team-1"><a>Team</a></Link></li>
+								<li><Link href="\blog"><a>Blog</a></Link></li>
 							</ul>
 						</div>
                     </div>
@@ -74,11 +91,11 @@ function Footer() {
 						<div className="widget widget_services">
 							<h5 className="footer-title">Our Services</h5>
 							<ul>
-								<li><Link href="#"><a>Strategy & Research</a></Link></li>
-								<li><Link href="#"><a>Web Development</a></Link></li>
-								<li><Link href="#"><a>Web Solution</a></Link></li>
-								<li><Link href="#"><a>Digital Marketing</a></Link></li>
-								<li><Link href="#"><a>App Design </a></Link></li>
+								<li><Link href="\servicedetails\telecalling"><a>Telecalling</a></Link></li>
+								<li><Link href="\servicedetails\search-engine-optimisation"><a>Search engine optimisation</a></Link></li>
+								<li><Link href="\servicedetails\digital-marketing"><a>Digital Marketing</a></Link></li>
+								<li><Link href="\servicedetails\web-development"><a>Web Development</a></Link></li>
+								
 							</ul>
 						</div>
                     </div>

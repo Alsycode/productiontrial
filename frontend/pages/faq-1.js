@@ -1,6 +1,6 @@
 import Accordion1 from "../element/accordion";
 import Footer from "../layout/footer";
-import Header from "../layout/header-3";
+import Header from "../layout/header";
 import Link from 'next/link';
 
 

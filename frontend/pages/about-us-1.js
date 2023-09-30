@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import ModalVideo from 'react-modal-video';
-import Header from "../layout/header-3";
+import Header from "../layout/header";
 import Footer from "./../layout/footer";
 import Counter from "./../element/counter";
 import TeamSlider from '../component/teamSlider';
@@ -141,21 +141,21 @@ function AboutUs1() {
 					<h2 className="title">Our Best Expertise</h2>
 				</div>
 				<div className="row">
-					<div className="col-lg-12">
+					{/* <div className="col-lg-12">
 						<TeamSlider/>
-					</div>
+					</div> */}
 				</div>
 			</div>
 		</section>	
 		
 		{/* <!-- Testimonials --> */}
-		<Testimonial/>
+		{/* <Testimonial/> */}
 		
 		{/* <!-- Blog --> */}
-		<Blog/>
-		
+		{/* <Blog/>
+		 */}
 		{/* <!-- Get A Quote --> */}
-		<Quote/>		
+		{/* <Quote/>		 */}
 		
 		{/* <!-- Call To Action --> */}
 		<section style={{"backgroundImage":"url(images/background/bg5.jpg)","backgroundSize":"cover"}}>

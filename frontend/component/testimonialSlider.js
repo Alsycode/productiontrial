@@ -1,14 +1,11 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Slider from 'react-slick';
 import Image from 'next/image';
 
-function TestimonialSlider() {
+function TestimonialSlider({ testimoniesData }) {
   const [asd, setAsd] = useState(); // State to hold the Slider reference
-  const [testimonials, setTestimonials] = useState(null); // State to store fetched testimonials
+  const [testimonials, setTestimonials] = useState(testimoniesData); // Use testimoniesData directly
   const [error, setError] = useState(null); // State to handle fetch errors
-
-  const apiUrl = `https://aecstrapi-askn4.ondigitalocean.app/api/testimonies?populate=*`; // API endpoint for testimonials
-  const bearerToken = "1cc0a576b38722e585230c62dc90b0476114ad0a15b46ab32402682387a85a661eaa649219d2b959481317fc5cb253a6021487927a8c43f6018f1d1ee7e126540c8a9da5cc064e5e77d2cb43ec767894c2319957a651cdf7d84f914d4588c5cd83142301d22bc2c3cfcb8a7a248a6328307ceabd5ef6532153d892e16be6a5e5" // Replace with your actual Bearer token
 
   // Configuration settings for the react-slick Slider component
   const settings = {
@@ -58,28 +55,8 @@ function TestimonialSlider() {
     );
   };
 
-  // Fetch testimonials from the API using useEffect hook
   useEffect(() => {
-    const fetchTestimonials = async () => {
-      try {
-        const response = await fetch(apiUrl, {
-          headers: {
-            Authorization: `Bearer ${bearerToken}`,
-          },
-        });
-
-        if (!response.ok) {
-          throw new Error('Failed to fetch data');
-        }
-
-        const responseData = await response.json();
-        setTestimonials(responseData.data);
-      } catch (err) {
-        setError(err.message);
-      }
-    };
-
-    fetchTestimonials();
+    // Fetching data is no longer needed since we're using testimoniesData
   }, []);
 
   // Render error message if there was an error during fetch

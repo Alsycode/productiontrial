@@ -1,7 +1,8 @@
 
 import TeamSlider from './../component/teamSlider';
 
-function Team() {
+function Team({blogsData}) {
+	console.log("*****",blogsData)
   return (
     <>
       <section className="content-inner">
@@ -12,7 +13,7 @@ function Team() {
 				</div>
 				<div className="row">
 					<div className="col-lg-12">
-						<TeamSlider/>
+						<TeamSlider blogsData={blogsData}/>
 					</div>
 				</div>
 			</div>
