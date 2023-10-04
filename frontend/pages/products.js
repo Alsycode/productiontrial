@@ -12,6 +12,19 @@ function Product({ products }) { // Updated prop name to "products"
   console.log("@@@@####$$$", products);
    const seoData = products[0].attributes.seo.keywords;
    console.log("seoData", seoData);
+   useEffect(() => {
+    // Find the <meta> element with the name "keywords"
+    const metaKeywords = document.querySelector('meta[name="description"]');
+
+    // Check if the <meta> element exists and has a content attribute
+    if (metaKeywords) {
+      const contentValue = metaKeywords.getAttribute("content");
+      console.log("Value of 'content' attribute:", contentValue);
+    } else {
+      console.log("Meta tag with name 'keywords' not found.");
+    }
+  }, []);
+
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 3;
   const [searchQuery, setSearchQuery] = useState("");
@@ -96,13 +109,19 @@ function Product({ products }) { // Updated prop name to "products"
   return (
     <>
    <Head>
-      <title>{products[0].attributes.seo.title}</title>
-      <meta name="keywords" content={products[0].attributes.seo.keywords} />
-      <meta name="description" content={products[0].attributes.seo.description} data-react-helmet="true"/>
-      <link rel="canonical" href={products[0].attributes.seo.metaRobots} />
-       
-
-    </Head>
+        <title>{products[0].attributes.seo.title}</title>
+        <meta name="keywords" content={products[0].attributes.seo.keywords} />
+        <meta
+          name="description"
+          content={products[0].attributes.seo.metaDescription}
+          data-react-helmet="true"
+        />
+        {console.log("Value of metaRobots:", products[0].attributes.seo.metaRobots)}
+        <link
+          rel="canonical"
+          href={products[0].attributes.seo.metaRobots}
+        />
+      </Head>
       <Header />
      <div className="page-content bg-white">
         <div
