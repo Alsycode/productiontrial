@@ -96,10 +96,10 @@ function Product({ products }) { // Updated prop name to "products"
   return (
     <>
    <Head>
-      <title>{product[0].attributes.seo.title}</title>
-      <meta name="keywords" content={product[0].attributes.seo.keywords} />
-      <meta name="description" content={product[0].attributes.seo.description} data-react-helmet="true"/>
-      <link rel="canonical" href={product[0].attributes.seo.metaRobots} />
+      <title>{products[0].attributes.seo.title}</title>
+      <meta name="keywords" content={products[0].attributes.seo.keywords} />
+      <meta name="description" content={products[0].attributes.seo.description} data-react-helmet="true"/>
+      <link rel="canonical" href={products[0].attributes.seo.metaRobots} />
        
 
     </Head>
