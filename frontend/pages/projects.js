@@ -5,13 +5,20 @@ import Link from "next/link";
 import Image from "next/image";
 import { BlogProvider } from "../component/BlogContext";
 import { useRouter } from "next/router";
-
+import { fetcher } from "./api/fetcher";
+import useSWR from "swr";
+import Head from "next/head";
 function Projects({ projects }) {
   console.log("@@@@####$$$", projects);
+
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 3;
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedTag, setSelectedTag] = useState(null);
+  const { data } = useSWR(`${process.env.NEXT_PUBLIC_STRAPI_URL}/projects?populate=*`, fetcher, {
+    fallback: projects,
+  });
+  console.log("Data from useSWR:", data);
   const handleTagClick = (tag) => {
     if (tag === selectedTag) {
       setSelectedTag(null);
@@ -23,7 +30,7 @@ function Projects({ projects }) {
 
   const filterProjects = () => {
     const filteredByTag = selectedTag
-      ? projects.filter((project) =>
+      ? data.filter((project) =>
           project.attributes.projectName
             .toLowerCase()
             .includes(selectedTag.toLowerCase())
@@ -92,7 +99,7 @@ function Projects({ projects }) {
 
   return (
     <>
-      <Header />
+       <Header />
       <div className="page-content bg-white">
         <div
           className="dlab-bnr-inr overlay-primary-dark"
@@ -116,6 +123,12 @@ function Projects({ projects }) {
                     className="dlab-blog style-1 bg-white text-center m-b50"
                     key={project.id}
                   >
+                    <Head>
+                    <title>{project.attributes.seo.title}</title>
+      <meta name="keywords" content={project.attributes.seo.keywords} />
+      <meta name="description" content={project.attributes.seo.description} data-react-helmet="true"/>
+      <link rel="canonical" href={project.attributes.seo.metaRobots}/>
+                    </Head>
                     <div className="dlab-media dlab-img-effect zoom">
                       <Image
                         width={700}
@@ -183,6 +196,9 @@ function Projects({ projects }) {
                     </div>
                   </div>
                 ))}
+     
+     
+     
                 <nav aria-label="Project Pagination">
                   <ul className="pagination text-center p-t20">
                     <li
@@ -383,6 +399,8 @@ function Projects({ projects }) {
         </section>
       </div>
       <Footer />
+ 
+     
     </>
   );
 }

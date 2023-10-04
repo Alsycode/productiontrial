@@ -27,6 +27,7 @@
         "react-visibility-sensor": "^5.1.1",
         "simple-react-lightbox": "^3.6.6",
         "slick-carousel": "^1.8.1",
+        "swr": "^2.2.4",
         "wowjs": "^1.1.3"
     }
 }

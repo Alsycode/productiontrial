@@ -4,7 +4,7 @@ import Footer from "../layout/footer";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
-
+import Head from "next/head";
 function BlogLargeRightSidebar({ blogs }) {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 3;
@@ -72,6 +72,9 @@ console.log("concat$$",concat)
 
   return (
     <>
+    <Head>
+
+    </Head>
       <Header />
       <div className="page-content bg-white">
         <div
@@ -103,13 +106,19 @@ console.log("concat$$",concat)
                     className="dlab-blog style-1 bg-white text-center m-b50"
                     key={blog.id}
                   >
+                    <Head>  
+                      <title>{blog.attributes.seo.title}</title>
+                  <meta name="keywords" content={blog.attributes.seo.keywords} />
+                  <meta name="description" content={blog.attributes.seo.description} data-react-helmet="true"/>
+                  <link rel="canonical" href={blog.attributes.seo.metaRobots} />
+                  </Head>
                     <div className="dlab-media dlab-img-effect zoom">
                       {blog.attributes.blogphotos?.data?.attributes?.url ? (
                         <Image
                           width={700}
                           height={270}
                           src={blog.attributes.blogphotos.data.attributes.url}
-                          alt={blog.attributes.topic}
+                          alt={blog.attributes.id}
                         />
                       ) : (
                         <span>No Image Available</span>

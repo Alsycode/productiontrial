@@ -5,13 +5,21 @@ import Link from "next/link";
 import Image from "next/image";
 import { BlogProvider } from "../component/BlogContext";
 import { useRouter } from "next/router";
-
+import useSWR from "swr";
+import { fetcher } from "./api/fetcher";
+import Head from "next/head";
 function Product({ products }) { // Updated prop name to "products"
   console.log("@@@@####$$$", products);
+   const seoData = products[0].attributes.seo.keywords;
+   console.log("seoData", seoData);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 3;
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedTag, setSelectedTag] = useState(null); 
+  const { data } = useSWR("https://aecstrapi-askn4.ondigitalocean.app/api/products?populate=*", fetcher, {
+    fallback: products,
+  });
+  console.log("Data from useSWR:", data);
   const handleTagClick = (tag) => {
     if (tag === selectedTag) {
       // If the same tag is clicked again, clear the selected tag
@@ -24,13 +32,13 @@ function Product({ products }) { // Updated prop name to "products"
 
   // Filter blogs based on the selected tag
   const filteredBlogsByTag = selectedTag
-    ? products.filter((product) =>
+    ? data.filter((product) =>
     product.attributes.productname.toLowerCase().includes(selectedTag.toLowerCase())
       )
     : products;
 
     const filteredBlogsBySearch = searchQuery
-    ? products.filter((product) =>
+    ? data.filter((product) =>
     product.attributes.productname.toLowerCase().includes(searchQuery.toLowerCase())
       )
     : products;
@@ -87,6 +95,7 @@ function Product({ products }) { // Updated prop name to "products"
 
   return (
     <>
+   
       <Header />
      <div className="page-content bg-white">
         <div
@@ -114,6 +123,15 @@ function Product({ products }) { // Updated prop name to "products"
                     className="dlab-blog style-1 bg-white text-center m-b50"
                     key={product.id}
                   >
+
+<Head>
+      <title>{product.attributes.seo.title}</title>
+      <meta name="keywords" content={product.attributes.seo.keywords} />
+      <meta name="description" content={product.attributes.seo.description} data-react-helmet="true"/>
+      <link rel="canonical" href={product.attributes.seo.metaRobots} />
+       
+
+    </Head>
                     <div className="dlab-media dlab-img-effect zoom">
                       {product.attributes.productimage?.data?.attributes?.formats.large.url ? (
                         <Image
@@ -180,7 +198,7 @@ function Product({ products }) { // Updated prop name to "products"
                     </div>
                   </div>
                 ))}
-               <nav aria-label="Project Pagination">
+                <nav aria-label="Product Pagination">
                   <ul className="pagination text-center p-t20">
                     <li
                       className={`page-item ${
@@ -196,23 +214,6 @@ function Product({ products }) { // Updated prop name to "products"
                         </a>
                       </Link>
                     </li>
-                    {Array.from({ length: totalPages }).map((_, index) => (
-                      <li
-                        key={index}
-                        className={`page-item ${
-                          currentPage === index + 1 ? "active" : ""
-                        }`}
-                      >
-                        <Link href="#">
-                          <a
-                            className="page-link"
-                            onClick={() => handlePageChange(index + 1)}
-                          >
-                            {index + 1}
-                          </a>
-                        </Link>
-                      </li>
-                    ))}
                     <li
                       className={`page-item ${
                         currentPage === totalPages ? "disabled" : ""

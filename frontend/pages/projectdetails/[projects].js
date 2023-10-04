@@ -4,7 +4,8 @@ import Footer from "../../layout/footer";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
-
+import useSWR from "swr";
+import { fetcher } from "../api/fetcher";
 function ProjectDetails({ blogData, otherData }) {
   console.log("^&^^&**&*&*",otherData);
   const [currentPage, setCurrentPage] = useState(1);
