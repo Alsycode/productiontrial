@@ -95,7 +95,14 @@ function Product({ products }) { // Updated prop name to "products"
 
   return (
     <>
-   
+   <Head>
+      <title>{product.attributes.seo.title}</title>
+      <meta name="keywords" content={product.attributes.seo.keywords} />
+      <meta name="description" content={product.attributes.seo.description} data-react-helmet="true"/>
+      <link rel="canonical" href={product.attributes.seo.metaRobots} />
+       
+
+    </Head>
       <Header />
      <div className="page-content bg-white">
         <div
@@ -124,14 +131,7 @@ function Product({ products }) { // Updated prop name to "products"
                     key={product.id}
                   >
 
-<Head>
-      <title>{product.attributes.seo.title}</title>
-      <meta name="keywords" content={product.attributes.seo.keywords} />
-      <meta name="description" content={product.attributes.seo.description} data-react-helmet="true"/>
-      <link rel="canonical" href={product.attributes.seo.metaRobots} />
-       
 
-    </Head>
                     <div className="dlab-media dlab-img-effect zoom">
                       {product.attributes.productimage?.data?.attributes?.formats.large.url ? (
                         <Image
