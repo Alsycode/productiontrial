@@ -146,19 +146,29 @@ function Product({ products }) { // Updated prop name to "products"
             <div className="row">
               <div className="col-xl-8 col-lg-8 m-b50">
                 {currentProducts.map((product) => (
+                    
+
+                   
                   <div
                     className="dlab-blog style-1 bg-white text-center m-b50"
                     key={product.id}
                   >
-
-
+                     
+                     <Head>
+      {/* Update document head with product-specific data */}
+      <title>{product.attributes.seo.metaTitle}</title>
+      <meta name="description" content={product.attributes.seo.metaDescription} />
+      <meta name="keywords" content={product.attributes.seo.keywords} />
+      <meta name="robots" content={product.attributes.seo.metaRobots} />
+      <link rel="canonical" href={product.attributes.seo.canonicalURL} />
+    </Head>
                     <div className="dlab-media dlab-img-effect zoom">
                       {product.attributes.productimage?.data?.attributes?.formats.large.url ? (
                         <Image
                           width={700}
                           height={270}
                           src={product.attributes.productimage.data.attributes.formats.large.url}
-                          alt={product.attributes.topic}
+                          alt={product.attributes.slug}
                         />
                       ) : (
                         <span>No Image Available</span>
