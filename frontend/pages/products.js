@@ -108,22 +108,7 @@ function Product({ products }) { // Updated prop name to "products"
 
   return (
     <>
-   <Head>
-        <title>{products[0].attributes.seo.metaTitle}</title>
-        <meta name="keywords" content={products[0].attributes.seo.keywords} />
-        <meta
-          name="description"
-          content={products[0].attributes.seo.metaDescription}
-          data-react-helmet="true"
-        />
-        {console.log("Value of metaRobots:", products[0].attributes.seo.metaRobots)}
-        <link
-          rel="canonical"
-          href={products[0].attributes.seo.canonicalURL}
-        />
-         <meta name="robots" content={products[0].attributes.seo.metaRobots} />
-      </Head>
-      <Header />
+   
      <div className="page-content bg-white">
         <div
           className="dlab-bnr-inr overlay-primary-dark"
